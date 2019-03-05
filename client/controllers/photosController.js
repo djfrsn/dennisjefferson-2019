@@ -1,4 +1,18 @@
+const AWS = require('aws-sdk');
+// const fs = require('fs');
+// const path = require('path');
+
+//configuring the AWS environment
+AWS.config.update({
+  accessKeyId: process.env.S3_ACCESS_KEY,
+  secretAccessKey: process.env.S3_SECRET
+});
+
+var s3 = new AWS.S3();
+
 async function getPhotos() {
+  console.log('s3', s3);
+
   return [
     {
       src:
