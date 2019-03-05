@@ -1,7 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 
-const links = [{ href: '/photography', label: 'Photography' }].map(link => {
+const links = [
+  { href: '/photography', label: 'Photography' },
+  { href: '/upload', label: 'Upload' }
+].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`;
   return link;
 });

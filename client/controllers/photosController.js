@@ -11,8 +11,6 @@ AWS.config.update({
 var s3 = new AWS.S3();
 
 async function getPhotos() {
-  console.log('s3', s3);
-
   return [
     {
       src:
