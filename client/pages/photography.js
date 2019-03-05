@@ -9,7 +9,7 @@ const Home = () => (
     <Nav />
 
     <div className="hero">
-      <h1 className="title">Welcome to Next!</h1>
+      <h1 className="title">Welcome to Photography!</h1>
     </div>
 
     <style jsx>{`
