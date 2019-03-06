@@ -5,12 +5,14 @@ function uploadFiles({ Bucket, files }) {
 
   return files.map(item => {
     return new Promise((res, rej) => {
-      var params = {
-        Bucket,
-        Key: item.originalname,
-        Body: item.buffer,
-        ACL: 'public-read'
-      };
+      // var params = {
+      //   Bucket,
+      //   Key: item.name,
+      //   Body: fs.readFileSync(item.path),
+      //   ACL: 'public-read'
+      // };
+      // console.log('params', params);
+
       res('ok');
       // s3bucket.upload(params, function(err, data) {
       //   if (err) {

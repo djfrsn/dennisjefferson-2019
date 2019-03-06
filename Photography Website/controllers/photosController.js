@@ -1,7 +1,8 @@
 const AWS = require('aws-sdk');
-const formidable = require('formidable');
+// const formidable = require('formidable');
 const formidableFormParse = require('../lib/back-end/formidable').formParse;
-var Promise = require('bluebird');
+const uploadFiles = require('../lib/back-end/S3').uploadFiles;
+// var Promise = require('bluebird');
 
 // const fs =  require('fs');
 // const path = require('path');
@@ -28,14 +29,16 @@ async function uploadPhotos(req, res) {
 
   const buckets = await s3.listBuckets().promise();
 
-  res.json({ files, buckets });
+  const uploadPhotos = await Promise.all(
+    uploadFiles({
+      Bucket: 'dmj-photos-optimized',
+      files
+    })
+  );
 
-  return [
-    {
-      src:
-        'https://scontent-lax3-1.cdninstagram.com/vp/2703c9e5e441d2c8dd2370f5e5cdf5b4/5D1E6EC4/t51.2885-15/e35/53699539_156053975395117_5335796242065307045_n.jpg?_nc_ht=scontent-lax3-1.cdninstagram.com'
-    }
-  ];
+  console.log('uploadPhotos', uploadPhotos);
+
+  res.json({ files, buckets });
 }
 
 module.exports.uploadPhotos = uploadPhotos;

@@ -6,7 +6,7 @@ function formParse(req, incomingForm = new formidable.IncomingForm()) {
       if (err) {
         rej(err);
       } else {
-        res({ fields, files });
+        res({ fields, files: Object.keys(files).map(key => files[key]) });
       }
     });
   });
