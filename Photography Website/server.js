@@ -12,6 +12,8 @@ const handle = app.getRequestHandler();
 
 const routes = require('./routes');
 
+const errorHandlers = require('./lib/errorHandlers');
+
 app
   .prepare()
   .then(() => {
@@ -21,6 +23,14 @@ app
     server.use(cookiesMiddleware());
 
     server.use('/', routes);
+
+    if (server.get('env') != 'production') {
+      /* Development Error Handler - Prints stack trace */
+      server.use(errorHandlers.developmentErrors);
+    } else {
+      // production error handler
+      server.use(errorHandlers.productionErrors);
+    }
 
     server.get('*', (req, res) => handle(req, res));
 
