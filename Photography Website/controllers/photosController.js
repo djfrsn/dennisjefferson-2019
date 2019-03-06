@@ -23,11 +23,11 @@ async function uploadPhotos(req, res) {
   const photosForm = new formidable.IncomingForm();
   console.log('parse', photosForm);
 
-  // photosForm.parse(req, function(err, fields, files) {
-  //   res.writeHead(200, { 'content-type': 'text/plain' });
-  //   res.write('received upload:\n\n');
-  //   res.end(util.inspect({ fields: fields, files: files }));
-  // });
+  photosForm.parse(req, function(err, fields, files) {
+    res.writeHead(200, { 'content-type': 'text/plain' });
+    res.write('received upload:\n\n');
+    res.end(util.inspect({ fields: fields, files: files }));
+  });
 
   // // photosForm.on('fileBegin', function(name, file) {
   // //   file.path = __dirname + '/uploads/' + file.name;

@@ -1,7 +1,7 @@
 {
   "name": "create-next-example-app",
   "scripts": {
-    "dev": "NODE_ENV=development node server.js",
+    "dev": "NODE_ENV=development nodemon server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
   },
@@ -17,5 +17,8 @@
     "react-dom": "^16.8.3",
     "react-dropzone": "^9.0.0",
     "universal-cookie-express": "^3.0.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
   }
 }
