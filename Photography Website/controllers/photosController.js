@@ -1,5 +1,8 @@
 const AWS = require('aws-sdk');
 const formidable = require('formidable');
+const formidableFormParse = require('../lib/back-end/formidable').formParse;
+var Promise = require('bluebird');
+
 // const fs =  require('fs');
 // const path = require('path');
 
@@ -19,26 +22,14 @@ async function getPhotos() {
     }
   ];
 }
+
 async function uploadPhotos(req, res) {
-  const photosForm = new formidable.IncomingForm();
-  console.log('parse', photosForm);
+  const { files } = await formidableFormParse(req);
 
-  photosForm.parse(req, function(err, fields, files) {
-    res.writeHead(200, { 'content-type': 'text/plain' });
-    res.write('received upload:\n\n');
-    res.end(util.inspect({ fields: fields, files: files }));
-  });
+  const buckets = await s3.listBuckets().promise();
 
-  // // photosForm.on('fileBegin', function(name, file) {
-  // //   file.path = __dirname + '/uploads/' + file.name;
-  // // });
+  res.json({ files, buckets });
 
-  // // photosForm.on('file', function(name, file) {
-  // //   console.log('File ' + file);
-  // //   console.log('Uploaded ' + file.name);
-  // // });
-
-  // res.send('ok!');
   return [
     {
       src:
