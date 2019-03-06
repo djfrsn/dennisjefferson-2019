@@ -1,9 +1,11 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
+import uploadPhotos from '../../lib/front-end/uploadPhotos';
 
 class PhotoUploader extends React.Component {
   onDrop = (acceptedFiles, rejectedFiles) => {
     // Do something with files
+    uploadPhotos({ acceptedFiles, rejectedFiles });
   };
 
   render() {

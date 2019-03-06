@@ -18,10 +18,11 @@ async function getPhotos() {
     }
   ];
 }
-async function uploadPhotos() {
+async function uploadPhotos(req, res) {
   console.log('upload s3', s3);
-  console.log('args', arguments);
+  console.log('req', req.body);
 
+  res.send('ok!');
   return [
     {
       src:
