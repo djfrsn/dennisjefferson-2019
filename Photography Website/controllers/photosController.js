@@ -31,6 +31,7 @@ async function uploadPhotos(req, res) {
 
   const uploadPhotos = await Promise.all(
     uploadFiles({
+      AWS,
       Bucket: 'dmj-photos-optimized',
       files
     })
