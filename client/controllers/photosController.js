@@ -22,6 +22,7 @@ async function getPhotos() {
 }
 async function uploadPhotos() {
   console.log('upload s3', s3);
+  console.log('args', arguments);
 
   return [
     {
