@@ -7,8 +7,6 @@ function appendFilesToFormData(formData, acceptedFiles) {
 }
 
 async function uploadPhotos({ acceptedFiles, rejectedFiles }) {
-  console.log('lib/uploadPhoto', acceptedFiles);
-
   let photoData = appendFilesToFormData(new FormData(), acceptedFiles);
 
   const res = await axios.post('/photos/upload', photoData, {
