@@ -10,6 +10,8 @@ const app = next({ dev });
 
 const handle = app.getRequestHandler();
 
+const routes = require('./routes');
+
 app
   .prepare()
   .then(() => {
@@ -17,6 +19,8 @@ app
 
     server.use(bodyParser.json());
     server.use(cookiesMiddleware());
+
+    server.use('/', routes);
 
     server.get('*', (req, res) => handle(req, res));
 
